@@ -1,0 +1,69 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+  "name": "Debian",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+      "version": "latest",
+      "jdkDistro": "tem"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "git.enableCommitSigning": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        // Java
+        "[java]": {
+          "editor.defaultFormatter": "redhat.java"
+        },
+        "java.compile.nullAnalysis.mode": "interactive",
+        "java.checkstyle.version": "10.18.1",
+        "java.checkstyle.configuration": "/google_checks.xml",
+        // XML
+        "[xml]": {
+          "editor.defaultFormatter": "redhat.vscode-xml"
+        },
+        "xml.validation.enabled": false,
+        // YAML
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+        }
+      },
+      "extensions": [
+        // Remove extensions installed by features.
+        "-vscjava.vscode-java-pack",
+        // Common
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        // Java
+        "redhat.java",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "shengchen.vscode-checkstyle"
+      ]
+    }
+  },
+
+  // This command is the last of three that finalizes container setup when a dev container is created.
+  "postCreateCommand": "/bin/bash .devcontainer/install.sh"
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
